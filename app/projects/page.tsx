@@ -21,13 +21,15 @@ export default function ProjectsPage() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background">
       <Header />
-      <div className="pt-24 pb-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-16">
-            <h1 className="text-4xl font-bold mb-4">{currentLang === "cs" ? "Projekty" : "Projects"}</h1>
-            <p className="text-muted-foreground text-lg">
+      <div className="pt-32 pb-20 px-4 md:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16 md:mb-20">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+              {currentLang === "cs" ? "Projekty" : "Projects"}
+            </h1>
+            <p className="text-muted-foreground text-lg md:text-xl max-w-3xl leading-relaxed">
               {currentLang === "cs"
                 ? "Kolekce profesionálních aplikací a systémů, které jsem vytvořil jako Product Owner."
                 : "A collection of professional applications and systems I've built as a Product Owner."}

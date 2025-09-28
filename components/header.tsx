@@ -52,49 +52,58 @@ export function Header() {
   }
 
   return (
-    <header className="fixed top-0 w-full bg-background/80 backdrop-blur-sm border-b border-border/50 z-50">
-      <div className="max-w-6xl mx-auto px-6 py-4">
+    <header className="fixed top-0 w-full bg-background/90 backdrop-blur-md border-b border-border/30 z-50 shadow-sm">
+      <div className="max-w-7xl mx-auto px-8 py-5">
         <nav className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <span className="font-mono text-lg font-semibold group-hover:text-primary transition-colors">
-              Panzmoravy
-            </span>
+            <div className="relative">
+              <span className="font-mono text-xl font-bold group-hover:text-primary transition-all duration-300 transform group-hover:scale-105">
+                Panzmoravy
+              </span>
+              <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></div>
+            </div>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10">
             <Link
               href="/"
-              className={`text-sm transition-colors ${
-                pathname === "/" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+              className={`relative text-base font-medium transition-all duration-300 hover:text-primary ${
+                pathname === "/" ? "text-primary" : "text-muted-foreground"
               }`}
             >
               {currentLang === "cs" ? "Domů" : "Home"}
+              {pathname === "/" && (
+                <div className="absolute -bottom-2 left-0 w-full h-0.5 bg-primary rounded-full"></div>
+              )}
             </Link>
             <Link
               href="/projects"
-              className={`text-sm transition-colors ${
-                pathname === "/projects" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+              className={`relative text-base font-medium transition-all duration-300 hover:text-primary ${
+                pathname === "/projects" ? "text-primary" : "text-muted-foreground"
               }`}
             >
               {currentLang === "cs" ? "Projekty" : "Projects"}
+              {pathname === "/projects" && (
+                <div className="absolute -bottom-2 left-0 w-full h-0.5 bg-primary rounded-full"></div>
+              )}
             </Link>
             <a
               href="mailto:contact@panzmoravy.com"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-base font-medium text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-105"
             >
               {currentLang === "cs" ? "Kontakt" : "Contact"}
             </a>
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1 mr-2">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 mr-3 bg-muted/50 rounded-lg p-1">
               {languages.map((lang) => (
                 <button
                   key={lang.code}
                   onClick={() => switchLanguage(lang.code)}
-                  className={`px-2 py-1 rounded text-sm transition-all ${
+                  className={`px-3 py-2 rounded-md text-sm transition-all duration-300 transform hover:scale-105 ${
                     currentLang === lang.code
-                      ? "bg-primary/10 text-primary"
+                      ? "bg-primary text-primary-foreground shadow-md"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`}
                   title={lang.name}
@@ -104,8 +113,13 @@ export function Header() {
               ))}
             </div>
 
-            <Button variant="ghost" size="icon" onClick={toggleTheme} className="h-9 w-9">
-              {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={toggleTheme} 
+              className="h-10 w-10 hover:bg-primary/10 hover:text-primary transition-all duration-300 transform hover:scale-110"
+            >
+              {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
           </div>
         </nav>
